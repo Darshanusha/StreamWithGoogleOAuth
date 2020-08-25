@@ -14,23 +14,23 @@ class GoogleApi extends Component{
             this.auth2 = window.gapi.auth2.getAuthInstance();
             //this.setState({isSignedIn: this.auth.isSignedIn.get()})
             this.onAuthChange(this.auth2.isSignedIn.get());
-            console.log(this.auth2.isSignedIn.get());
-            console.log("ddd")
+            //console.log(this.auth2.isSignedIn.get());
+            //console.log("ddd")
             this.auth2.isSignedIn.listen(this.onAuthChange);
         }));
     }
 
     onAuthChange = (isSignedIn)=>{
-        console.log("sign in",isSignedIn);
+        //console.log("sign in",this.auth2.currentUser.get().getId());
         if(isSignedIn){
-            this.props.signIn();
+            this.props.signIn(this.auth2.currentUser.get().getId());
         }else{
             this.props.signOut();
         }
     }
 
     loadSigninValue=()=>{
-        console.log("props ",this.props);
+        console.log("GoogleApi props ",this.props);
         if(this.props.auth.isSignedIn === null){
             return null;
         }
@@ -53,7 +53,8 @@ class GoogleApi extends Component{
 }
 
 const mapStateToProps = (state)=>{
-    return {auth: state.auth}
+    //console.log("state",state)
+    return {auth: state.auth, userId: state.auth.userId}
 }
 
 export default connect(mapStateToProps,{signIn,signOut})(GoogleApi);
