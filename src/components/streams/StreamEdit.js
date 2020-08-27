@@ -19,7 +19,7 @@ class StreamEdit extends Component{
         if(!this.props.stream){
             return <div>Loading..</div>
         }
-        return <div><StreamForm initialValues = {{ name: this.props.stream.name, description: this.props.stream.description }} onSubmit = {this.onSubmit}/></div>;
+        return <div><StreamForm initialValues = {{ name: this.props.stream.name, description: this.props.stream.description, userId: this.props.stream.userId }} onSubmit = {this.onSubmit}/></div>;
     }
     render(){
         return <div>
