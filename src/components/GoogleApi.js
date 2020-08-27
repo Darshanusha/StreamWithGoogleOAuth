@@ -12,16 +12,12 @@ class GoogleApi extends Component{
             scope: 'email'
         }).then(()=>{
             this.auth2 = window.gapi.auth2.getAuthInstance();
-            //this.setState({isSignedIn: this.auth.isSignedIn.get()})
             this.onAuthChange(this.auth2.isSignedIn.get());
-            //console.log(this.auth2.isSignedIn.get());
-            //console.log("ddd")
             this.auth2.isSignedIn.listen(this.onAuthChange);
         }));
     }
 
     onAuthChange = (isSignedIn)=>{
-        //console.log("sign in",this.auth2.currentUser.get().getId());
         if(isSignedIn){
             this.props.signIn(this.auth2.currentUser.get().getId());
         }else{
@@ -30,7 +26,7 @@ class GoogleApi extends Component{
     }
 
     loadSigninValue=()=>{
-        console.log("GoogleApi props ",this.props);
+        //console.log("GoogleApi props ",this.props);
         if(this.props.auth.isSignedIn === null){
             return null;
         }

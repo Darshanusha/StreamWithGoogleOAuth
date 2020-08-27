@@ -1,58 +1,26 @@
 import React, { Component } from 'react';
-import { reduxForm, Field } from 'redux-form';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { connect } from 'react-redux';
+import {createStream} from '../../actions'
+import StreamForm from './StreamForm';
 
 class StreamCreate extends Component {
-    getTextBox = (formProps) => {
-        //console.log(formProps)
-        return (
-            <div className="form-group">
-                <label className="">{formProps.label}</label>
-                <input className="form-control" {...formProps.input} autoComplete="off" />
-                <div>{this.renderError(formProps.meta)}</div>
-            </div>
-        );
-    }
-
-    renderError = (meta) => {
-        if (meta.error && meta.touched) {
-            return (
-                <div className="text-danger">
-                    * {meta.error}
-                </div>
-            );
-        }
-    }
+    
 
     onSubmit = (formEle) => {
-        console.log("Form elements", formEle)
+        this.props.createStream(formEle);
     }
 
 
     render() {
         //console.log(this.props);
+        
         return <div>
-            <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
-                <Field name="name" component={this.getTextBox} label="Name" />
-                <Field name="description" component={this.getTextBox} label="Description" />
-                <button className="btn btn-success">Submit</button>
-            </form>
+            <h2>Create Stream</h2>
+            <StreamForm onSubmit = {this.onSubmit}/>
         </div>
     }
 }
 
-const validate = (formVal) => {
-    const error = {}
-    if (!formVal.name) {
-        error.name = "Please enter name";
-    }
-    if (!formVal.description) {
-        error.description = "Please enter description";
-    }
-    return error;
-}
 
-export default reduxForm({
-    form: 'streamCreate',
-    validate: validate
-})(StreamCreate);
+export default connect(null, {createStream} )(StreamCreate);

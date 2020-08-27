@@ -5,7 +5,7 @@ import GoogleApi from './GoogleApi';
 class Headder extends Component {
     render() {
         return <div>
-            <Link to="/"> Streamer </Link> &nbsp;
+            <Link to="/stream/list"> Streamer </Link> &nbsp;
             <Link to="/"> Home </Link> &nbsp;
             <Link to="/"> Login </Link> &nbsp;
             <GoogleApi/>
