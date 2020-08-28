@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {featchStream, editStream} from '../../actions';
 import StreamForm from './StreamForm';
-import { formValues } from 'redux-form';
 
 class StreamEdit extends Component{
 
@@ -19,7 +18,7 @@ class StreamEdit extends Component{
         if(!this.props.stream){
             return <div>Loading..</div>
         }
-        return <div><StreamForm initialValues = {{ name: this.props.stream.name, description: this.props.stream.description, userId: this.props.stream.userId }} onSubmit = {this.onSubmit}/></div>;
+        return <div><StreamForm initialValues = {{ name: this.props.stream.name, description: this.props.stream.description }} onSubmit = {this.onSubmit}/></div>;
     }
     render(){
         return <div>

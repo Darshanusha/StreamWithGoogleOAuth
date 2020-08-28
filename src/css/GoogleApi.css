@@ -1,0 +1,4 @@
+.full-width{
+    float: right;
+    flex-flow: column;
+}

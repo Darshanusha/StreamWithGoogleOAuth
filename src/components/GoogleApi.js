@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { connect } from 'react-redux';
 import { signIn, signOut } from '../actions';
+import '../css/GoogleApi.css';
 
 class GoogleApi extends Component{
     state = {isSignedIn: null};
@@ -24,7 +25,7 @@ class GoogleApi extends Component{
             this.props.signOut();
         }
     }
-
+    
     loadSigninValue=()=>{
         //console.log("GoogleApi props ",this.props);
         if(this.props.auth.isSignedIn === null){
@@ -32,17 +33,17 @@ class GoogleApi extends Component{
         }
         if(this.props.auth.isSignedIn){
             console.log(this.props);
-            return <button onClick = {()=>this.auth2.signOut()} className = "btn btn-danger">
+            return <button onClick = {()=>this.auth2.signOut()} className = "btn btn-danger float-right">
                  Sign Out
             </button>
         }
-        return <button onClick = {()=>this.auth2.signIn()} className = "btn btn-danger">
+        return <button onClick = {()=>this.auth2.signIn()} className = "btn btn-danger float-right">
                 Sign In with Google
             </button>
     }
 
     render(){
-        return <div>
+        return <div className = "full-width">
             {this.loadSigninValue()}
         </div>
     }
